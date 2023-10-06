@@ -1,0 +1,15 @@
+The Harris–Benedict equation estimates the number of calories your body
+needs to maintain your weight if you do no exercise. This is called your
+basal metabolic rate, or BmR.
+The formula for the calories needed for a woman to maintain her weight is
+BmR = 655 + (4.3 × weight in pounds) + (4.7 × height in inches) –
+(4.7 × age in years)
+The formula for the calories needed for a man to maintain his weight is
+BmR = 66 + (6.3 × weight in pounds) + (12.9 × height in inches) –
+(6.8 × age in years)
+A typical chocolate bar will contain around 230 calories. Write a program
+that allows the user to input his or her weight in pounds, height in
+inches, age in years, and the character m for male and F for female. The
+program should then output the number of chocolate bars that should
+be consumed to maintain one’s weight for the appropriate sex of the
+specified weight, height, and age.

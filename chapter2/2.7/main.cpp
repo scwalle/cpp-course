@@ -1,22 +1,43 @@
+/* Project 2.7 */
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int num1, num2;
-    cout << "Enter 2 integers:\n";
-    cout << "1st integer:\n";
-    cin >> num1;
-    cout << "2nd integer:\n";
-    cin >> num2;
 
-    cout << "Sum:";
-    cout << num1 + num2;
-    cout << "\n";
+//Constants
 
-    cout << "Product: ";
-    cout << num1 * num2;
-    cout << "\n";
+void getInflation(){
+	double cost = 0;
+	cout << "Cost of item: $";
+	cin >> cost;
 
-    return 0;
+	double inflationPercent = 0.0;
+	cout << "Inflation rate (input as a percentage): ";
+	cin >> inflationPercent;
+	double inflationRate = inflationPercent / 100;
+
+	int years = 0;
+	cout << "Number of years: ";
+	cin >> years;
+
+	for(int i = 0; i < years; i++){
+		cost += cost * inflationRate;
+	}
+
+	cout << "Item cost after " << years << " year" << (years == 1 ? "" : "s") << " of inflation: $" << cost << endl;
 }
+
+int main(){
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+	while(true){
+		getInflation();
+		
+		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
+		string loop = "";
+		cin >> loop;
+		if (loop == "") return 0;
+		cout << endl << endl;
+	}
+}
+// need: 5, 6, 7, 9, 13, 14

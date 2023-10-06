@@ -3,20 +3,29 @@ using namespace std;
 
 int main()
 {
-    int num1, num2;
-    cout << "Enter 2 integers:\n";
-    cout << "1st integer:\n";
-    cin >> num1;
-    cout << "2nd integer:\n";
-    cin >> num2;
+    int exerciseCount;
+    int earnedTotal = 0;
+    int pointsTotal = 0;
+    cout << "Number of classrom exercises: ";
+    cin >> exerciseCount;
+    cout << endl;
+    for(int i = 0; i < exerciseCount; i++){
+        int score, possible;
+        cout << "Score received for exercise " << i+1 << ": ";
+        cin >> score;
+        earnedTotal += score;
 
-    cout << "Sum:";
-    cout << num1 + num2;
-    cout << "\n";
+        cout << "Total points possible for exercise " << i+1 << ": ";
+        cin >> possible;
+        pointsTotal += possible;
+    }
 
-    cout << "Product: ";
-    cout << num1 * num2;
-    cout << "\n";
+    float totalGrade = ((float) earnedTotal) / ((float) pointsTotal);
+    totalGrade *= 100;
+    cout.setf(ios::fixed);
+    cout.setf(ios::showpoint);
+    cout.precision(2);
+    cout << "Your total is " << earnedTotal << " out of " << pointsTotal << ", or " << totalGrade << "%";
 
     return 0;
 }
