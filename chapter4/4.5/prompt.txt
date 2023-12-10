@@ -1,0 +1,35 @@
+To maintain one’s body weight, an adult human needs to consume enough
+calories daily to (1) meet the basal metabolic rate (energy required to
+breathe, maintain body temperature, etc.), (2) account for physical activity
+such as exercise, and (3) account for the energy required to digest the food
+that is being eaten. for an adult that weighs P pounds, we can estimate
+these caloric requirements using the following formulas:
+A. Basal metabolic rate: Calories required = 70 * (P / 2.2)0.756
+B. Physical activity: Calories required = 0.0385 * Intensity * P * Minutes
+here, Minutes is the number of minutes spent during the physical activity,
+and Intensity is a number that estimates the intensity of the activity. here
+are some sample numbers for the range of values:
+
+				   Activity		 Intensity
+				-----------------------------
+				Running 10 mph:		17
+				Running 6 mph: 		10
+				Basketball: 		8
+				Walking 1 mph: 		1
+
+C. Energy to digest food: calories required = TotalCaloriesConsumed * 0.1
+In other words, 10 percent of the calories we consume goes towards digestion.
+Write a function that computes the calories required for the basal metabolic
+rate, taking as input a parameter for the person’s weight. Write another
+function that computes the calories required for physical activity, taking as
+input parameters for the intensity, weight, and minutes spent exercising.
+
+Use these functions in a program that inputs a person’s weight, an estimate
+for the intensity of physical activity, the number of minutes spent perform-
+ing the physical activity, and the number of calories in one serving of your
+favorite food. The program should then calculate and output how many
+servings of that food should be eaten per day to maintain the person’s cur-
+rent weight at the specified activity level. The computation should include
+the energy that is required to digest food.
+You can find estimates of the caloric content of many foods on the Web.
+for example, a double cheeseburger has approximately 1000 calories.
