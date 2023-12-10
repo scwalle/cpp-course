@@ -1,12 +1,11 @@
 /* Project 2.7 */
-#define cin >> x cin >> x; cout << x << endl
 #include <iostream>
 using namespace std;
 
 
 //Constants
 
-void getPay(){
+void getInflation(){
 	double cost = 0;
 	cout << "Cost of item: $";
 	cin >> cost;
@@ -32,9 +31,9 @@ int main(){
 	cout.setf(ios::showpoint);
 	cout.precision(2);
 	while(true){
-		getPay();
+		getInflation();
 		
-		cout << "\nTry again? (enter to exit, anything else to go again): ";
+		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
 		string loop = "";
 		cin >> loop;
 		if (loop == "") return 0;

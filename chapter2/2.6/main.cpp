@@ -23,7 +23,7 @@ state tax
 union dues
 net takehome pay
 */
-#define cin >> x cin >> x; cout << x << endl
+
 #include <iostream>
 using namespace std;
 
@@ -55,9 +55,11 @@ void getPay(){
 		double overtime = hours - 40;
 		gross = 40 * HOURLY_RATE + overtime * OVERTIME_RATE;
 	}
-	cout << "\nGross Pay: $" << gross << endl;
 
-	cout << "Deductions: \n";
+	cout << "\nGross Pay: $" << gross << endl << endl;
+
+	cout << "---Deductions---\n";
+
 	// taxes
 	ss = SOCIAL_SECURITY_RATE * gross;
 	cout << "Social Security Tax: $" << ss << endl;
@@ -73,6 +75,8 @@ void getPay(){
 		takehome -= HEALTH_INSURANCE_DEPENDANT_FEE;	
 	}
 
+	cout << endl;
+
 	cout << "Takehome Pay: $" << takehome << endl;
 }
 
@@ -82,8 +86,9 @@ int main(){
 	cout.precision(2);
 	while(true){
 		getPay();
-		
-		cout << "\nTry again? (enter to exit, anything else to go again): ";
+
+		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
+
 		string loop = "";
 		cin >> loop;
 		if (loop == "") return 0;
