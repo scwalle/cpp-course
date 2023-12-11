@@ -1,22 +1,25 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int num1, num2;
-    cout << "Enter 2 integers:\n";
-    cout << "1st integer:\n";
-    cin >> num1;
-    cout << "2nd integer:\n";
-    cin >> num2;
+void run(){
+	cout << "Hello World!";
+}
 
-    cout << "Sum:";
-    cout << num1 + num2;
-    cout << "\n";
+int main(){
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
 
-    cout << "Product: ";
-    cout << num1 * num2;
-    cout << "\n";
+	do {
+		cout << endl;
+		run();
 
-    return 0;
+		cout << endl << endl;
+		cout << "Run again? (y/n): ";
+		char loop;
+		cin >> loop;
+		if (loop == 'n' || loop == 'N') break;
+	} while (true);
+
+	return 0;
 }
