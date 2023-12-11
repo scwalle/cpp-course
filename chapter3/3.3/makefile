@@ -1,5 +1,9 @@
-all: main.cpp
+all:
 	g++ main.cpp
-
-test: a.out
 	./a.out
+
+a.out: main.cpp
+
+clean:
+	rm a.out
+

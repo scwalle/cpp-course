@@ -1,5 +1,5 @@
-
 #include <iostream>
+#include <string>
 using namespace std;
 
 /* void num (int &year, int thresh, char *text[]) { */
@@ -17,17 +17,30 @@ using namespace std;
 	} \
 } 
 
+const string letters[] = { 
+	"M", "CM", "d", "Cd",
+	"C", "XC", "L", "XL",
+	"X", "iX", "V", "iV",
+	"i"
+};
+const int lookupValues[] = { 
+	1000, 900, 500, 400,
+	100,  90,  50,  40,
+	10,   9,   5,   4,
+	1
+};
+
 void run(){
 	int year;
 	cout << "Enter year: ";
 	cin >> year;
-	while (year) {
-		num(5, "V")
-		num(10, "X")
-		num(50, "L")
-		num(100, "C")
-		num(500, "d")
-		num(1000, "M")
+	int i = 0;
+	while(year) {
+		while(year >= lookupValues[i]){
+			year -= lookupValues[i];
+			cout << letters[i];      
+		}
+		i++;
 	}
 }
 

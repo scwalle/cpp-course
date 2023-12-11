@@ -8,4 +8,10 @@ Important roman numerals are
 	d for 500
 	M for 1,000
 
-Recall that some numbers are formed by using a kind of subtraction of one roman “digit”; for example, iV is 4 produced as V minus i, XL is 40, CM is 900, and so on. A few sample years: MCM is 1900, MCML is 1950, MCMLX is 1960, MCMXL is 1940, MCMLXXXiX is 1989. Assume the year is between 1000 and 3000. Your program should include a loop that lets the user repeat this calculation until the user says she or he is done.
+Recall that some numbers are formed by using a kind of subtraction of one roman “digit”; for example, iV is 4 produced as V minus i, XL is 40, CM is 900, and so on. A few sample years: 
+	MCM is 1900, 
+	MCML is 1950, 
+	MCMLX is 1960, 
+	MCMXL is 1940, 
+	MCMLXXXiX is 1989. 
+Assume the year is between 1000 and 3000. Your program should include a loop that lets the user repeat this calculation until the user says she or he is done.
