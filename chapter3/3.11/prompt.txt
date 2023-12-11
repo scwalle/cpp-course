@@ -1,0 +1,19 @@
+The keypad on your oven is used to enter the desired baking temperature
+and is arranged like the digits on a phone:
+
+1 2 3
+4 5 6
+7 8 9
+  0
+
+unfortunately the circuitry is damaged and the digits in the leftmost col-
+umn no longer function. in other words, the digits 1, 4, and 7 do not work.
+if a recipe calls for a temperature that can’t be entered, then you would
+like to substitute a temperature that can be entered. Write a program that
+inputs a desired temperature. The temperature must be between 0 and 999
+degrees. if the desired temperature does not contain 1, 4, or 7, then output
+the desired temperature. otherwise, compute the next largest and the next
+smallest temperature that does not contain 1, 4, or 7 and output both.
+For example, if the desired temperature is 450, then the program
+should output 399 and 500. Similarly, if the desired temperature is
+375, then the program should output 380 and 369.
