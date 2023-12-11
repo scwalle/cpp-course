@@ -1,22 +1,51 @@
+
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int num1, num2;
-    cout << "Enter 2 integers:\n";
-    cout << "1st integer:\n";
-    cin >> num1;
-    cout << "2nd integer:\n";
-    cin >> num2;
+/* void num (int &year, int thresh, char *text[]) { */
+/* 	if (year <= thresh) { */
+/* 		year -= thresh; */
+/* 		cout << text; */
+/* 	} */
+/* } */
 
-    cout << "Sum:";
-    cout << num1 + num2;
-    cout << "\n";
+#define num(thresh, text) { \
+	if (year <= thresh) { \
+		year -= thresh; \
+		cout << text; \
+		continue; \
+	} \
+} 
 
-    cout << "Product: ";
-    cout << num1 * num2;
-    cout << "\n";
+void run(){
+	int year;
+	cout << "Enter year: ";
+	cin >> year;
+	while (year) {
+		num(5, "V")
+		num(10, "X")
+		num(50, "L")
+		num(100, "C")
+		num(500, "d")
+		num(1000, "M")
+	}
+}
 
-    return 0;
+int main(){
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+
+	do {
+		cout << endl;
+		run();
+
+		cout << endl << endl;
+		cout << "Run again? (y/n): ";
+		char loop;
+		cin >> loop;
+		if (loop == 'n' || loop == 'N') break;
+	} while (true);
+
+	return 0;
 }
