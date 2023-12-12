@@ -1,22 +1,51 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int num1, num2;
-    cout << "Enter 2 integers:\n";
-    cout << "1st integer:\n";
-    cin >> num1;
-    cout << "2nd integer:\n";
-    cin >> num2;
+bool doesntWork(char inp[], int len) {
+	for(int i = 0; i < len; i++){
+		switch (inp[i]) {
+			case '1':
+			case '4':
+			case '7':
+				return false;
+		}
+	}
+	return true;
+}
 
-    cout << "Sum:";
-    cout << num1 + num2;
-    cout << "\n";
+bool fixTime(char inp[], int len) {
+	for(int i = 0; i < len; i++){
+		switch (inp[i]) {
+			case '1':
+			case '4':
+			case '7':
+				return false;
+		}
+	}
+	return true;
+}
+void run(){
+	char temp[3];
+	cout << "Enter temperature 000-999: ";
+	cin >> temp;
+	doesntWork(temp);
+}
 
-    cout << "Product: ";
-    cout << num1 * num2;
-    cout << "\n";
+int main(){
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
 
-    return 0;
+	do {
+		cout << endl;
+		run();
+
+		cout << endl << endl;
+		cout << "Run again? (y/n): ";
+		char loop;
+		cin >> loop;
+		if (loop == 'n' || loop == 'N') break;
+	} while (true);
+
+	return 0;
 }
