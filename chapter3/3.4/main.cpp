@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+//TODO make 'a' dynamic, ie it can change later
 int getCard() {
 	char card;
 	cout << "Card: ";
@@ -32,10 +32,11 @@ void run(){
 	cin >> cardNum;
 	cout << endl;
 	int score = 0;
+	int hand[21] = { 0 };
 	for (int i = 0; i < cardNum; i++){
 		int card;
 		while (true) {
-			card = getCard();
+			hand[i] = getCard();
 			if (card == -1) {
 				cout << "Invalid card" << endl;
 				continue;
