@@ -18,7 +18,7 @@ using namespace std;
 } 
 
 const string letters[] = { 
-	"M", "CM", "d", "Cd",
+	"M", "CM", "D", "CD",
 	"C", "XC", "L", "XL",
 	"X", "IX", "V", "IV",
 	"I"

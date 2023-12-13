@@ -7,7 +7,7 @@ using namespace std;
 */
 
 double hatSize(int weight, int height) {
-	return ((double) weight / (double) height) * 2.9;
+	return (((double) weight / (double) height)) * 2.9;
 }
 
 /* 
@@ -62,13 +62,13 @@ void run()
     cout << endl;
 
     cout << "Hat size: ";
-    cout << hatSize(height, weight) << endl;
+    cout << hatSize(weight, height) << endl;
 
     cout << "Jacket Size: ";
     cout << jacketSize(height, weight, age) << endl;
 
-    cout << "Jacket Size: ";
-    cout << waistSize(height, age) << endl;
+    cout << "Waist Size: ";
+    cout << waistSize(weight, age) << endl;
 }
 
 int main(){

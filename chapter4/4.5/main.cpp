@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//TODO make it an exponent
 double basalMetabolicRate(double weight) {
 	return 70.0 * (weight / 2.2) * 0.756;
 }

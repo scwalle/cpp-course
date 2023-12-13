@@ -13,18 +13,6 @@ bool doesntWork(char inp[], int len) {
 	return false;
 }
 
-/* char[] fixTime(char inp[], int len, int delta) { */
-/* 	char out[len]; */
-/* 	for(int i = 0; i < len; i++){ */
-/* 		switch (inp[i]) { */
-/* 			case '1': */
-/* 			case '4': */
-/* 			case '7': */
-/* 				out[i] = inp[i] + delta; */
-/* 		} */
-/* 	} */
-/* 	return out; */
-/* } */
 void run(){
 	const int len = 3;
 	char temp[len];
