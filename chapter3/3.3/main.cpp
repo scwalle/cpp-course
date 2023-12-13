@@ -20,8 +20,8 @@ using namespace std;
 const string letters[] = { 
 	"M", "CM", "d", "Cd",
 	"C", "XC", "L", "XL",
-	"X", "iX", "V", "iV",
-	"i"
+	"X", "IX", "V", "IV",
+	"I"
 };
 const int lookupValues[] = { 
 	1000, 900, 500, 400,
