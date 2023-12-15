@@ -26,39 +26,52 @@ int getCard() {
 	}
 }
 
+int calcScore(int cards[], int length){
+	int score = 0;
+	int aces = 0;
+	for (int i = 0; i < length; i++){
+		if (cards[i] == 1) {
+			//add all aces as 11
+			aces += 1;
+			score += 11;
+		} else {
+			score += cards[i];
+		}
+	}
+	//switch aces from 11 to 1 until under 21 or we run out of aces
+
+	while (aces > 0 && score > 21) {
+		aces -= 1;
+		score -= 10;
+	}
+	return score;
+}
+
 void run(){
 	int cardNum;
 	cout << "Number of cards: ";
 	cin >> cardNum;
 	cout << endl;
-	int score = 0;
 	int hand[21] = { 0 };
 	for (int i = 0; i < cardNum; i++){
 		int card;
 		while (true) {
-			hand[i] = getCard();
+			card = getCard();
 			if (card == -1) {
 				cout << "Invalid card" << endl;
 				continue;
 			} else {
+				hand[i] = card;
 				break;
 			}
 		} 
-		if (card == 1) {
-			if (score + 11 <= 21){
-				score += 11;
-			} else {
-				score += 1;
-			}
-		} else {
-			score += card;
+		int score = calcScore(hand, cardNum);
+		cout << "Score: " << score << endl;
+		if (score > 21) {
+			cout << "Busted!";
+			break;
 		}
-	}
-	if (score > 21) {
-		cout << "Busted!";
-	} else {
-		cout << score;
-	}
+	}		
 }
 
 
