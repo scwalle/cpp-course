@@ -1,9 +1,9 @@
 #include <iostream>
+#include <cmath>
 using namespace std;
 
-//TODO make it an exponent
 double basalMetabolicRate(double weight) {
-	return 70.0 * (weight / 2.2) * 0.756;
+	return 70.0 * pow((weight / 2.2), 0.756);
 }
 
 double physicalActivity(double weight, double minutes, double intensity) {
