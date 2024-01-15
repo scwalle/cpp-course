@@ -1,0 +1,6 @@
+Write a program that requests the current time and a waiting time as two
+integers for the number of hours and the number of minutes to wait. The
+program then outputs what the time will be after the waiting period. Use
+24-hour notation for the times. Include a loop that lets the user repeat this
+calculation for additional input values until the user says she or he wants
+to end the program.

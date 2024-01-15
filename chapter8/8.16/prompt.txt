@@ -1,0 +1,35 @@
+In many races competitors wear an RFID tag on their shoe or bib. When the
+racer crosses a sensor a computer logs the racer’s number along with the
+current time. Sensors can be placed along the course to accurately calculate
+the racer’s finish time or pace and also to verify that the racer crossed key
+checkpoints. Consider such a system in use for a half marathon running
+race, which is 13.1 miles. In this problem there are only three sensors: at
+the start, at the 7 mile point, and at the finish line.
+Here is sample data for three racers. The first line is the gun time in the
+24 hour time format (HH MM SS). The gun time is when the race be-
+gins. Subsequent lines are recorded by sensors and contain the sensor ID
+(0=start, 1=midpoint, 2=finish) followed by the racer’s number followed
+by the time stamp. The start time may be different than the gun time
+because sometimes it takes a racer a little while to get to the starting line
+when there is a large pack.
+
+08 00 00
+0,100,08 00 00
+0,132,08 00 03
+0,182,08 00 15
+1,100,08 50 46
+1,182,08 51 15
+1,132,08 51 18
+2,132,09 34 16
+2,100,09 35 10
+2,182,09 45 15
+
+Create a text file with a sample race log. Write a program that reads the log
+data into array(s) or vector(s). The program should then allow a user to
+enter a racer’s number and it should output the racer’s overall finish place,
+race split times in minutes/mile for each split (i.e. the time between sen-
+sors), and the overall race time and overall race pace.
+For a more challenging version modify your program so that it works with
+an arbitrary number of sensors placed at different locations along the
+course instead of just 3 locations. You will need to specify the mile marker
+for each sensor.

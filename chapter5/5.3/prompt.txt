@@ -1,0 +1,2 @@
+Modify your program for Programming Project 2 so that it uses 12-hour
+notation, such as 3:45 PM

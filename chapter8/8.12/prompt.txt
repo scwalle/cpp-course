@@ -1,0 +1,9 @@
+Write a program that inputs a time from the console. The time should be in
+the format "HH:MM AM" or "HH:MM PM". Hours may be one or two digits, for
+example, "1:10 AM" or "11:30 PM". Your program should include a func-
+tion that takes a string parameter containing the time. This function should
+convert the time into a four-digit military time based on a 24-hour clock.
+For example, "1:10 AM" would output "0110 hours", "11:30 PM" would
+output "2330 hours", and "12:15 AM" would output "0015 hours". The
+function may either write the time to the console or return a string to be
+written to the console by the main function

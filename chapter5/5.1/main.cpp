@@ -1,22 +1,48 @@
 #include <iostream>
 using namespace std;
 
-int main()
-{
-    int num1, num2;
-    cout << "Enter 2 integers:\n";
-    cout << "1st integer:\n";
-    cin >> num1;
-    cout << "2nd integer:\n";
-    cin >> num2;
+void getTime(int &hours, int &mins) {
+	cout << "Enter time:\n";
+	cin >> hours;
+	cin.ignore(); // ignore colon
+	cin >> mins;
+}
 
-    cout << "Sum:";
-    cout << num1 + num2;
-    cout << "\n";
+void convert24hto12h(int &hours, int &mins, char &AMorPM) {
+	if (hours < 12) {
+		AMorPM = 'A';
+		if (hours == 0) hours = 12;
+		return;
+	} else {
+		AMorPM = 'P';
+		if (hours != 12) hours -= 12;
+		return;
+	}
+}
 
-    cout << "Product: ";
-    cout << num1 * num2;
-    cout << "\n";
+void outputTime(int hours, int mins, char AMorPM){
+	printf("Converted to 12 hour time: %02d:%02d %cM", hours, mins, AMorPM);
+}
 
-    return 0;
+void doCode(){
+	int hours, mins;
+	getTime(hours, mins);
+	char AMorPM;
+	convert24hto12h(hours, mins, AMorPM);
+	outputTime(hours, mins, AMorPM);
+}
+	
+int main(){
+	cout.setf(ios::fixed);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+	while(true){
+		doCode();
+		
+		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
+		string loop = "";
+		cin >> loop;
+		if (loop == "") return 0;
+		cout << endl << endl;
+	}
 }

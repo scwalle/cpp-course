@@ -1,0 +1,11 @@
+Hexadecimal numerals are integers written in base 16. The 16 digits used
+are ‘0’ through ‘9’ plus ‘a’ for the “digit 10”, ‘b’ for the “digit 11”, ‘c’ for
+the “digit 12”, ‘d’ for the “digit 13”, ‘e’ for the “digit 14”, and ‘f ’ for the
+“digit 15”. For example, the hexadecimal numeral d is the same as base 10
+numeral 13 and the hexadecimal numeral 1d is the same as the base
+10 numeral 29. Write a C++ program to perform addition of two hexadeci-
+mal numerals each with up to 10 digits. If the result of the addition is more
+than 10 digits long, then simply give the output message “Addition over-
+flow” and not the result of the addition. use arrays to store hexadecimal
+numerals as arrays of characters. Include a loop to repeat this calculation
+for new numbers until the user says she or he wants to end the program.

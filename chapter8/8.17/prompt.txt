@@ -1,0 +1,11 @@
+Based on the log file described in Programming Project 16 write a program
+to detect cheating. This could occur if:
+
+• A racer misses a sensor, which is a sign that the racer may have taken a
+shortcut.
+• A race split is suspiciously fast, which is a sign that the racer may have
+hopped in a vehicle. In this case, a race split faster than 4:30 per mile
+can be considered suspicious.
+
+The output should be a list of suspected cheaters along with the reason
+for suspicion.

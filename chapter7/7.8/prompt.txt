@@ -1,0 +1,27 @@
+Write a program that will read a line of text and output a list of all the
+letters that occur in the text together with the number of times each letter
+occurs in the line. end the line with a period that serves as a sentinel value.
+The letters should be listed in the following order: the most frequently oc-
+curring letter, the next most frequently occurring letter, and so forth. use
+two arrays, one to hold integers and one to hold letters. you may assume
+that the input uses all lowercase letters. For example, the input
+
+do be do bo.
+
+should produce output similar to the following:
+
+letter	Number of Occurrences
+----------------------------
+   o				3
+   d				2
+   b				2
+   e				1
+
+
+Your program will need to sort the arrays according to the values in the
+integer array. This will require that you modify the function sort given
+in Display 7.12. you cannot use sort to solve this problem without
+changing the function. If this is a class assignment, ask your instructor if
+input/output should be done with the keyboard and screen or if it should
+be done with files. If it is to be done with files, ask your instructor for
+instructions on file names.
