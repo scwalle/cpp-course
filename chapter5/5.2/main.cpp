@@ -1,26 +1,39 @@
 #include <iostream>
 using namespace std;
 
-void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
+struct time {
+	int hours;
+	int mins;
+};
+
+void getTime(int &hours, int &mins) {
 	cin >> hours;
 	cin.ignore(); // ignore colon. this is a bad way to do this
 	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+}
+void doCode(){
+	int hours, mins;
+	cout << "Enter start time:\n";
+	getTime(hours, mins);
 
+	int waitHours, waitMins;
+	cout << "Enter wait time:\n";
+	getTime(waitHours, waitMins);
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+	int finalHours, finalMins;
+	finalHours = hours + waitHours;
+	finalMins = mins + waitMins;
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	if ( finalMins > 60 ) {
+		finalHours++;
+		finalMins -= 60;
+	}
+
+	if ( finalHours > 24 ) {
+		finalHours -= 24;
+	}
+
+	printf("Final time: %02d:%02d", finalHours, finalMins);
 }
 	
 int main(){
