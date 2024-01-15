@@ -1,26 +1,63 @@
 #include <iostream>
 using namespace std;
 
-void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
+struct time {
+	int hours;
+	int mins;
+	char XM;
+};
+
+void getTime(struct time &time) {
+	cin >> time.hours;
 	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+	cin >> time.mins;
+}
 
+void convert24hto12h(struct time &time) {
+	if (time.hours < 12) {
+		time.XM = 'A';
+		if (time.hours == 0) time.hours = 12;
+		return;
+	} else {
+		time.XM = 'P';
+		if (time.hours != 12) time.hours -= 12;
+		return;
+	}
+}
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+void outputTime(struct time &time){
+	printf("Final time: %02d:%02d %cM", time.hours, time.mins, time.XM);
+}
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+struct time addTimes(struct time time1, struct time time2) {
+	struct time out;
+	out.hours = time1.hours + time2.hours;
+	out.mins  = time1.mins + time2.mins;
+
+	if ( out.mins > 60 ) {
+		out.hours++;
+		out.mins -= 60;
+	}
+
+	if ( out.hours > 24 ) {
+		out.hours -= 24;
+	}
+	return out;
+}	
+
+void doCode(){
+	struct time start;
+	cout << "Enter start time:\n";
+	getTime(start);
+
+	struct time wait;
+	cout << "Enter wait time:\n";
+	getTime(wait);
+
+	struct time end = addTimes(start, wait);
+
+	convert24hto12h(end);
+	outputTime(end);
 }
 	
 int main(){
