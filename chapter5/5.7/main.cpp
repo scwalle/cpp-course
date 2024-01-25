@@ -1,6 +1,14 @@
 #include <iostream>
 using namespace std;
 
+bool isLeapYear(int year);
+
+int getCenturyValue(int year);
+
+int getYearValue(int year);
+
+int getMonthValue(int month, int year);
+
 void doCode(){
 	int hours, mins;
 	cout << "Enter time:\n";
@@ -37,3 +45,28 @@ int main(){
 		cout << endl << endl;
 	}
 }
+
+bool isLeapYear(int year){
+	return (year % 400 == 0) || (year % 4 == 0 && ! (year  % 100 == 0));
+};
+
+
+int getCenturyValue(int year) {
+	int remainder = (year / 100) % 4;
+	return (3 - remainder)*2;
+};
+
+
+int getYearValue(int year) {
+	int last2 = year % 100;
+	return last2 / 4 + last2;	
+};
+
+int getMonthValue(int month, int year) {
+	switch(){
+		case "January":
+			return 0;
+		break;
+	}
+};
+
