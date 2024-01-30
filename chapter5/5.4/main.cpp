@@ -25,7 +25,7 @@ void compute_coins(int coin_value, int &num, int &amount_left) {
 void printCoins(int coins[], const std::string strings[], int length) {
 /* void printCoins(int coins[], int length) { */
 	for (int i = 0; i < length; i++) {
-		cout << coins[i] << " " << coinStrings[i] << ( (i != length-1) ? ", " : ".\n" );
+		cout << coins[i] << " " << strings[i] << ( (i != length-1) ? ", " : ".\n" );
 	}
 }
 
