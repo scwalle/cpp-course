@@ -1,38 +1,82 @@
 #include <iostream>
 using namespace std;
 
+#define X_MONTHS \
+	X(January)   \
+	X(February)  \
+	X(March)     \
+	X(April)     \
+	X(May)       \
+	X(June)      \
+	X(July)      \
+	X(August)    \
+	X(September) \
+	X(October)   \
+	X(November)  \
+	X(December)
+
+enum Months {
+	January,
+	February,
+	March,
+	April,
+	May,
+	June,
+	July,
+	August,
+	September,
+	October,
+	November,
+	December
+};
+
+string monthNames[] = {
+	"January",
+	"February",
+	"March",
+	"April",
+	"May",
+	"June",
+	"July",
+	"August",
+	"September",
+	"October",
+	"November",
+	"December"
+};
+
+string weekdays[] = {
+	"Sunday",
+	"Monday",
+	"Tuesday",
+	"Wednesday",
+	"Thursday",
+	"Friday",
+	"Saturday"
+};
+
 bool isLeapYear(int year);
-
 int getCenturyValue(int year);
-
 int getYearValue(int year);
-
-int getMonthValue(int month, int year);
-
-int getDayOfWeek(int day, int month, int year);
+int getMonthValue(Months month, int year);
+int getDayOfWeek(int day, Months month, int year);
+void getInput(Months &month, int &day, int &year) {
+	cout << "Enter time (mm/dd/yyyy): ";
+	int month_temp;
+	scanf("%d/%d/%d", &month_temp, &day, &year);
+	month = (Months) (month_temp-1);
+}
 
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
-
-
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
-
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	Months month;
+	int day;
+	int year;
+	getInput(month, day, year);
+	int weeknum = getDayOfWeek(day, month, year);
+	string weekstr = weekdays[weeknum];
+	printf("Day of week: %s", weekstr.c_str());
 }
-	
+
 int main(){
 	cout.setf(ios::fixed);
 	cout.setf(ios::showpoint);
@@ -80,35 +124,7 @@ October 	0
 November 	3
 December 	5
 */
-enum Months {
-	January,
-	February,
-	March,
-	April,
-	May,
-	June,
-	July,
-	August,
-	September,
-	October,
-	November,
-	December
-};
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-int getMonthValue(int month, int year) {
+int getMonthValue(Months month, int year) {
 	switch(month){
 		case January:
 			return isLeapYear(year) ? 6 : 0;
@@ -149,7 +165,7 @@ int getMonthValue(int month, int year) {
 	}
 };
 
-int getDayOfWeek(int day, int month, int year){
+int getDayOfWeek(int day, Months month, int year){
 	return (day + getMonthValue(month, year) + getYearValue(year) + getCenturyValue(year)) % 7;
 }
 
