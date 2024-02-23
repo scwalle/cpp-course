@@ -8,9 +8,11 @@ struct time {
 };
 
 void getTime(struct time &time) {
-	cin >> time.hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> time.mins;
+	scanf("%d:%d %cM", &time.hours, &time.mins, &time.XM);
+}
+
+void getDuration(struct time &time) {
+	scanf("%d:%d", &time.hours, &time.mins);
 }
 
 void convert24hto12h(struct time &time) {
@@ -47,12 +49,12 @@ struct time addTimes(struct time time1, struct time time2) {
 
 void doCode(){
 	struct time start;
-	cout << "Enter start time:\n";
+	cout << "Enter start time: ";
 	getTime(start);
 
 	struct time wait;
-	cout << "Enter wait time:\n";
-	getTime(wait);
+	cout << "Enter wait time: ";
+	getDuration(wait);
 
 	struct time end = addTimes(start, wait);
 
@@ -67,7 +69,7 @@ int main(){
 	while(true){
 		doCode();
 		
-		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
+		cout << "\n\nTry again? (Ctrl-C to exit, anything else to go again): ";
 		string loop = "";
 		cin >> loop;
 		if (loop == "") return 0;
