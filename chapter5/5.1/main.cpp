@@ -2,7 +2,7 @@
 using namespace std;
 
 void getTime(int &hours, int &mins) {
-	cout << "Enter time:\n";
+	cout << "Enter time:";
 	cin >> hours;
 	cin.ignore(); // ignore colon
 	cin >> mins;
