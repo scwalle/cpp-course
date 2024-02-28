@@ -1,38 +1,57 @@
 #include <iostream>
 using namespace std;
 
-struct time {
+struct time24h {
+	int hours;
+	int mins;
+};
+
+struct time12h {
 	int hours;
 	int mins;
 	char XM;
 };
 
-void getTime(struct time &time) {
+void getTime(struct time12h &time) {
 	scanf("%d:%d %cM", &time.hours, &time.mins, &time.XM);
 }
 
-void getDuration(struct time &time) {
+void getDuration(struct time24h &time) {
 	scanf("%d:%d", &time.hours, &time.mins);
 }
 
-void convert24hto12h(struct time &time) {
+time24h convert12hto24h(const struct time12h time) {
+	time24h out;
+	out.hours = time.hours;
+	out.mins = time.mins;
+	if (time.XM == 'P' && time.hours != 12) {
+		out.hours += 12;
+	} else if (time.XM == 'A' && time.hours == 12) {
+		out.hours -= 12;
+	}
+	return out;
+}
+
+time12h convert24hto12h(const struct time24h time) {
+	time12h out;
+	out.mins = time.mins;
 	if (time.hours < 12) {
-		time.XM = 'A';
-		if (time.hours == 0) time.hours = 12;
-		return;
+		out.XM = 'A';
+		if (time.hours == 0) out.hours = 12;
+		return out;
 	} else {
-		time.XM = 'P';
-		if (time.hours != 12) time.hours -= 12;
-		return;
+		out.XM = 'P';
+		if (time.hours != 12) out.hours = time.hours - 12;
+		return out;
 	}
 }
 
-void outputTime(struct time &time){
+void outputTime(struct time12h &time){
 	printf("Final time: %02d:%02d %cM", time.hours, time.mins, time.XM);
 }
 
-struct time addTimes(struct time time1, struct time time2) {
-	struct time out;
+struct time24h addTimes(struct time24h time1, struct time24h time2) {
+	struct time24h out;
 	out.hours = time1.hours + time2.hours;
 	out.mins  = time1.mins + time2.mins;
 
@@ -41,25 +60,29 @@ struct time addTimes(struct time time1, struct time time2) {
 		out.mins -= 60;
 	}
 
-	if ( out.hours > 24 ) {
+	if ( out.hours >= 24 ) {
 		out.hours -= 24;
 	}
 	return out;
 }	
 
 void doCode(){
-	struct time start;
-	cout << "Enter start time: ";
-	getTime(start);
+	struct time24h start;
+	{
+		struct time12h start12;
+		cout << "Enter start time: ";
+		getTime(start12);
+		start = convert12hto24h(start12);
+	}
 
-	struct time wait;
+	struct time24h wait;
 	cout << "Enter wait time: ";
 	getDuration(wait);
 
-	struct time end = addTimes(start, wait);
-
-	convert24hto12h(end);
-	outputTime(end);
+	struct time24h end = addTimes(start, wait);
+	
+	time12h output = convert24hto12h(end);
+	outputTime(output);
 }
 	
 int main(){
