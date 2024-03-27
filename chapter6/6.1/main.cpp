@@ -1,39 +1,51 @@
 #include <iostream>
+#include <fstream>
+
 using namespace std;
 
-void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+void processLetter(istream &input, ostream &output){
+	char c;
+	input.get(c);
+	while (!input.eof()) {
+		if (c == '#') {
+			input.get(c);
+			if (c == 'N') {
+				input.get(c);
+				if (c == '#') {
+					cout << "name matched\n";
+					cout << "name? ";
+					string name;
+					/* cin >> name; */
+					getline(cin, name);
+					output << name;
+				} else {
+					// doesn't match, put it back
+					input.putback(c);
+					output << "#N" << c;
+				}
+			} else {
+				// doesn't match, put it back
+				input.putback(c);
+				output << '#';
+			}
 
+		} else {
+			output << c;
+		}
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
-
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+		input.get(c);
+	}
 }
 	
 int main(){
-	cout.setf(ios::fixed);
-	cout.setf(ios::showpoint);
-	cout.precision(2);
-	while(true){
-		doCode();
-		
-		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
-		string loop = "";
-		cin >> loop;
-		if (loop == "") return 0;
-		cout << endl << endl;
-	}
+	ifstream input;
+	ofstream output;
+
+	input.open("letter_template.txt");
+	output.open("letter_out.txt");
+
+	processLetter(input, output);
+
+	input.close();
+	output.close();
 }
