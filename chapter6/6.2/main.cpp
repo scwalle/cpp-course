@@ -1,39 +1,49 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
-void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+void processStudents(istream &input, ostream &output){
+	string lastname, firstname;
+	const int numofscores = 10;
+	int scores[10] = {0};
+	int sum = 0;
+	while (!input.eof()) {
+		input >> lastname >> firstname;
+		for (int i = 0; i < numofscores; i++) {
+			input >> scores[i];
+		}
+		if (input.eof()) {
+			break;
+		}
 
+		sum = 0;	
+		for (int i = 0; i < numofscores; i++) {
+			sum += scores[i];
+		}
+		double average = sum / 10.0;
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
-
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+		output << lastname << ' ' << firstname << ' ';
+		for (int i = 0; i < numofscores; i++) {
+			output << scores[i];
+			output << ' ';
+		}
+		output << average;
+		output << endl;
+	}
 }
 	
 int main(){
-	cout.setf(ios::fixed);
-	cout.setf(ios::showpoint);
-	cout.precision(2);
-	while(true){
-		doCode();
-		
-		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
-		string loop = "";
-		cin >> loop;
-		if (loop == "") return 0;
-		cout << endl << endl;
+	ifstream input;
+	ofstream output;
+	input.open("input.txt");
+	output.open("output.txt");
+	if (input.fail()) {
+		cerr << "can't read input file\n";
+		exit(1);
 	}
+	
+	processStudents(input, output);
+
+	input.close();
+	output.close();
 }
