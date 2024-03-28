@@ -1,9 +1,5 @@
-Write a program that will compute the average word length (average num-
-ber of characters per word) for a file that contains some text. A word is
-defined to be any string of symbols that is preceded and followed by one
-of the following at each end: a blank, a comma, a period, the beginning of
-a line, or the end of a line. Your program should define a function that is
-called with the input-file stream as an argument. This function should also
-work with the stream cin as the input stream, although the function will
-not be called with cin as an argument in this program. If this is being done
-as a class assignment, obtain the file names from your instructor.
+Write a program that will compute the average word length (average number of characters per word) for a file that contains some text. 
+A word is defined to be any string of symbols that is preceded and followed by one of the following at each end: a blank, a comma, a period, the beginning of a line, or the end of a line. 
+Your program should define a function that is called with the input-file stream as an argument. 
+This function should also work with the stream cin as the input stream, although the function will not be called with cin as an argument in this program. 
+If this is being done as a class assignment, obtain the file names from your instructor.
