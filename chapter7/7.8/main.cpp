@@ -1,26 +1,39 @@
 #include <iostream>
 using namespace std;
 
+
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+	int freq[26];
+	char c;
+	int chars = 0;
+	cout << "input sentence: ";
+	while ((c = getchar()) != '.') {
+		if (c == ' ') { continue; }
+
+		chars++;
 
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+		int letter = c - 'a';
+		freq[letter]++;	
+	}
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	char letters[26];
+	int letterc = 0;
+
+	for (int i = 1; i <= chars; i++) {
+		for (int letter = 0; letter < 26; letter++) {
+			if (freq[letter] == i) {
+				letters[letterc] = letter;
+				letterc++;
+			}
+		}
+	}
+
+	cout << endl;
+	cout << "Letter | Frequency\n-------|----------\n";
+	for (int i = 0; i < letterc; i++) {
+		cout << "   " << (char) (letters[i] + 'a') << "   |     " << freq[letters[i]] << endl;
+	}
 }
 	
 int main(){
