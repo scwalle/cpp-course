@@ -1,39 +1,67 @@
 #include <iostream>
+#include <fstream>
+
 using namespace std;
 
-void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
-
-
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
-
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+bool isWordSep (char c) {
+	switch (c) {
+		case ' ':
+		case '.':
+		case ',':
+		case '\n':
+			return true;
+			break;
+		default:
+			return false;
+	}
 }
+
+int countWordsAndLetters(istream &input, int lettercounts[26]){
+	char c;
+	int wordCount = 0;
+	int currWord = 0;
+	input.get(c);
+	while (!input.eof()) {
+		if (isalpha(c)) {
+			lettercounts[tolower(c) - 'a']++;
+		}
+
+		if (!isWordSep(c)) {
+			currWord++;
+		}
+		if (isWordSep(c) && currWord != 0) {
+			wordCount++;
+			currWord = 0;
+		}
+		input.get(c);
+	}
+
+	return wordCount;
+}
+
 	
-int main(){
-	cout.setf(ios::fixed);
-	cout.setf(ios::showpoint);
-	cout.precision(2);
-	while(true){
-		doCode();
-		
-		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
-		string loop = "";
-		cin >> loop;
-		if (loop == "") return 0;
-		cout << endl << endl;
+int main(int argc, char *argv[]){
+	int wordcount = 0;
+	int lettercounts[26] = {0};
+
+	if (argc > 1) {
+		ifstream input;
+
+		input.open(argv[1]);
+		if (input.fail()) {
+			cerr << "failed to open file '" << argv[1] << "'.\n";
+			exit(1);
+		}
+		wordcount = countWordsAndLetters(input, lettercounts);
+		input.close();
+	} else {
+		wordcount = countWordsAndLetters(cin, lettercounts);
+	}
+	cout << wordcount << " words" << endl;
+	for (int i = 0; i < 26; i++) {
+		if (lettercounts[i] == 0) {
+			continue;
+		}
+		cout << lettercounts[i] << " " << (char)(i + 'a') <<  endl;
 	}
 }
