@@ -3,7 +3,7 @@ using namespace std;
 
 
 void doCode(){
-	int freq[26];
+	int freq[26] = {0};
 	char c;
 	int chars = 0;
 	cout << "input sentence: ";
@@ -17,10 +17,10 @@ void doCode(){
 		freq[letter]++;	
 	}
 
-	char letters[26];
+	char letters[26] = {0};
 	int letterc = 0;
 
-	for (int i = 1; i <= chars; i++) {
+	for (int i = chars; i > 0; i--) {
 		for (int letter = 0; letter < 26; letter++) {
 			if (freq[letter] == i) {
 				letters[letterc] = letter;
