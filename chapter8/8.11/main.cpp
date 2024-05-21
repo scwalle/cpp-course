@@ -1,39 +1,60 @@
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <iomanip>
 using namespace std;
 
-void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
-
-
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
-
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+char encodeChar (int key, char input) {
+	if ((input + key) > 126) {
+		return 32 + (input + key) - 127;
+	} else {
+		return input + key;	
+	}
 }
-	
+
+/*
+ *
+	(input + key) > 126 
+ * 	out = 32 + input + key - 127
+	(32 + input + key - 127) > 126 + 32 - 127
+ *
+ */
+
+char decodeChar (int key, char input) {
+	if (input - 32 + 127 > 126 ) {
+		return input - key - 32 + 127;
+	} else {
+		return input - key;
+	}
+}
+
+void decodeStr (int key, string & input, string & output) {
+	output.clear();
+	for (char c : input) {
+		output += decodeChar(key, c);
+	}
+}
+
 int main(){
-	cout.setf(ios::fixed);
-	cout.setf(ios::showpoint);
-	cout.precision(2);
-	while(true){
-		doCode();
-		
-		cout << "\nTry again? (Ctrl-C to exit, anything else to go again): ";
-		string loop = "";
-		cin >> loop;
-		if (loop == "") return 0;
-		cout << endl << endl;
+	string input = ":mmZ\\dxZmx]Zpgy";
+	string output;
+	
+	bool showall = false;
+
+	cout << " key | message\n---------------\n";
+	for (int key = 1; key <= 100; key++) {
+		decodeStr(key, input, output);	
+
+		bool print = true;
+		for (char c : output) {
+			if (!isprint(c)) {
+				print = false;
+				break;	
+			}
+		}
+
+		if (print || showall) {
+			cout << setw(3) << key << ": " << output << endl;
+		}
 	}
 }
