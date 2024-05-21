@@ -1,26 +1,26 @@
 #include <iostream>
 using namespace std;
 
+/* void readName(string & first, string & last, string & middle) { */
+/* } */
+
+#define ds(var) cout << #var ": " << var << endl
+
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+	string first, last, middle;
+	cin >> first >> middle >> last;
 
+	if (last.empty()) {
+		last = middle;
+		middle = "";
+	}
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+	cout << last << ", " << first;
+	if (!middle.empty()) { // if has middle name
+		cout << " " << middle[0] << ".";
+	}
+	cout << endl;
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
 }
 	
 int main(){
