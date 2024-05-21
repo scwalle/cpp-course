@@ -1,26 +1,23 @@
 #include <iostream>
 using namespace std;
 
+/* enum State {}; */
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+	string s;
+	char c;	
 
+	while ((c = cin.get()) != '.') {
+		if (isspace(c)) {
+			s += ' ';
+		} else {
+			s += tolower(c);
+		}
+	}
+	s += '.';
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+	s[0] = toupper(s[0]);
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	cout << s << endl;
 }
 	
 int main(){
