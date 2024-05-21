@@ -1,9 +1,16 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 const int HEX_DIGITS = 10;
 
+#define DEBUG 0
+
+#if DEBUG
 #define ds(var) cout << #var ": " << var << endl
+#else
+#define ds(var) ((void)(var))
+#endif
 
 int digitToVal(char c) {
 	switch (c) {
@@ -83,10 +90,9 @@ char valToDigit (int n) {
 
 bool addHex(char hex1[HEX_DIGITS], char hex2[HEX_DIGITS], char result[HEX_DIGITS]) {
 	int carry = 0;
-	for (int i = 0; i < HEX_DIGITS; i++) {
+	for (int i = HEX_DIGITS-1; i >= 0; i--) {
 		int d1, d2;
 		d1 = digitToVal(hex1[i]);
-
 		ds(d1);
 		d2 = digitToVal(hex2[i]);
 		ds(d2);
@@ -109,34 +115,33 @@ bool addHex(char hex1[HEX_DIGITS], char hex2[HEX_DIGITS], char result[HEX_DIGITS
 }
 
 void slideHex(char hex[HEX_DIGITS]) {
-	int numlen = 0;
-	for (int i = 0; i < HEX_DIGITS; i++) {
-		if (hex[i] == 0) {
-			hex[i] = '0';
-			break;
-		}
-		numlen += 1;
+	int numlen = strlen(hex) ;
+	if (numlen < HEX_DIGITS) {
+		hex[numlen] = '0';
 	}
-
-	for (int i = 0; i < numlen; i++) {
-		hex[i + (HEX_DIGITS - numlen)] = hex[i];
+	int offset = HEX_DIGITS - numlen;
+	ds(hex);
+	ds(offset);
+	for (int i = numlen-1; i >= 0; i--) {
+		char c = hex[i];
 		hex[i] = '0';
+		hex[i + offset] = c;
+		ds(hex);
 	}
 }
 
 void doCode(){
 	char hex1[HEX_DIGITS + 1] = {'0'};
 	hex1[HEX_DIGITS] = 0;
-	char hex2[HEX_DIGITS] = {'0'};
-	char result[HEX_DIGITS];
+	char hex2[HEX_DIGITS + 1] = {'0'};
+	hex2[HEX_DIGITS] = 0;
+	char result[HEX_DIGITS + 1];
 	for (int i = 0; i < HEX_DIGITS; i++) {
 		hex1[i] = '0';
 		hex2[i] = '0';
 		result[i] = '0';
 	}
-	char buf[HEX_DIGITS] = {'0'};
 
-	int len = 0;
 	cout << "Enter first hex number:\n";
 	cin >> hex1;
 	ds(hex1);
@@ -144,11 +149,13 @@ void doCode(){
 	ds(hex1);
 	cout << "Enter second hex number:\n";
 	cin >> hex2;
-	ds(hex1);
+	slideHex(hex2);
+	ds(hex2);
 
 	int carry = addHex(hex1, hex2, result);
 	if (carry) {
 		cout << "Addition Overflow\n";
+		cout << "Result anyways: " << result;
 		return;
 	}
 
