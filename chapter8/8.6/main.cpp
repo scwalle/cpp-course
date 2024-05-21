@@ -2,25 +2,27 @@
 using namespace std;
 
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
-
-
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
-
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	char c;
+	string word;
+	while (!cin.fail()){
+		while (isspace(c = cin.peek())){
+			cout.put(cin.get());
+		}
+		// c is not whitespace, start of a word
+		cin >> word;
+		bool isnum = true;
+		for (char c : word) {
+			if (!isdigit(c)) {
+				isnum = false;
+				break;
+			}
+		}
+		if (isnum) {
+			cout << string(word.length(), 'x');
+		} else {
+			cout << word;
+		}
+	}
 }
 	
 int main(){
