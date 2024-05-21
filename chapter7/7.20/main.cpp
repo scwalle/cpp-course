@@ -1,26 +1,70 @@
 #include <iostream>
+#include <fstream>
+#include <cstdlib>
 using namespace std;
 
+#define DEBUG 1
+
+#if DEBUG
+#define ds(var) cout << #var ": " << var << endl
+#else
+#define ds(var) ((void)(var))
+#endif
+
+const int maxAge = 200;
+
+void readFile(istream & file, double males[], double females[]) {
+	while (!file.fail()) {
+		int age;
+		double maleRate;
+		double femaleRate;
+		file >> age >> maleRate >> femaleRate;
+		
+		/* ds(age); */
+		/* ds(maleRate); */
+		/* ds(femaleRate); */
+		males[age] = maleRate;
+		females[age] = femaleRate;
+	}	
+}
+
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
+	double males[200];
+	double females[200];
 
+	ifstream file;
+	file.open("LifeDeathProbability.txt");
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+	readFile(file, males, females);
+	
+	int age;
+	cout << "Enter age: ";
+	cin >> age;
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	char sex;
+	cout << "Enter sex (m/f): ";
+	cin >> sex;
+
+	double prob; // death probability
+
+	while (true) {
+		if (age >= 120) {
+			break;
+		}
+
+		prob = (sex == 'm') ? males[age] : females[age]; // death probability
+		cout << "Current probability: " << prob << endl;
+		double r = ((double) rand() / (RAND_MAX));
+		cout << "generated: " << r << endl;
+		if (r > prob) {
+			cout << "Survived " << age << endl;
+			age++;
+		} else {
+			break;
+		}
+	}
+	cout << "Simulation ended at age " << age << endl;
+	cout << "You will live to age " << age << endl;
 }
 	
 int main(){
