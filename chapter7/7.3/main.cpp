@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 using namespace std;
 
 
@@ -34,15 +35,16 @@ void delete_repeats(char array[], int &size) {
 }
 
 void doCode(){
-	int size;
-	cout << "Enter array size:";
-	cin >> size;
-	char array[size+1];
-	array[size] = 0;
-	for (int i = 0; i < size; i++) {
-		cout << "Element " << i << ":";
-		cin >> array[i];
-	}
+	const int MAXSIZE = 1000;
+	char array[MAXSIZE+1];
+	cout << "Enter string: ";
+	cin >> array;
+	int size = strlen(array);
+	/* array[size] = 0; */
+	/* for (int i = 0; i < size; i++) { */
+	/* 	cout << "Element " << i << ":"; */
+	/* 	cin >> array[i]; */
+	/* } */
 	cout << endl;
 	cout << "array: " << array << "\n";
 	delete_repeats(array, size);
