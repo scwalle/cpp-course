@@ -1,26 +1,56 @@
 #include <iostream>
+#include <cstring>
+#include <cstdlib>
 using namespace std;
 
+const int PINLEN = 5;
+const char pin[] = {1, 2, 3, 4, 5};
+
+void printArr(int pin[], int len) {
+	for (int i = 0; i < len; i++) {
+		cout << pin[i] << ' ';
+	}
+	cout << endl;
+}
+
+void translate(const char code[], const char input[], const int len, char output[]) {
+	for (int i = 0; i < len; i++) {
+		output[i] = code[input[i]];
+		/* cout << output[i] << endl; */
+	}
+	output[len] = 0;
+}
+
 void doCode(){
-	int hours, mins;
-	cout << "Enter time:\n";
-	cin >> hours;
-	cin.ignore(); // ignore colon. this is a bad way to do this
-	cin >> mins;
-	char day1, day2;
-	cout << "Enter day of week:";
-	cin >> day1 >> day2;
-	cout << day1 << endl;
-	cout << day2 << endl;
 
+	cout << "Digit in pin: ";
+	for (int i = 0; i < 10; i++) {
+		cout << i << ' ';
+	}
+	cout << endl;
 
-	cout << "Sum:";
-	cout << hours + mins;
-	cout << "\n";
+	char code[10];
+	srand(time(0));
+	
+	cout << "Digit typed:  ";
+	for (int i = 0; i < 10; i++) {
+		code[i] = (rand() % 3) + '1';
+		cout << code[i] << ' ';
+	}
+	cout << endl;
 
-	cout << "Product: ";
-	cout << hours * mins;
-	cout << "\n";
+	char pinStr[10];
+	cout << "Enter pin: ";
+	cin >> pinStr;
+
+	char translated[10];
+	translate(code, pin, 5, translated); 
+	/* cout << translated << endl; */
+	if (strcmp(pinStr, translated) == 0) {
+		cout << "Correct!\n";
+	} else {
+		cout << "Wrong! >:3\n";
+	}
 }
 	
 int main(){
