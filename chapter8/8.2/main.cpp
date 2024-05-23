@@ -21,7 +21,7 @@ int countWordsAndLetters(istream &input, int lettercounts[26]){
 	int wordCount = 0;
 	int currWord = 0;
 	input.get(c);
-	while (!input.eof()) {
+	while (!input.eof() && c != '\n') {
 		if (isalpha(c)) {
 			lettercounts[tolower(c) - 'a']++;
 		}
