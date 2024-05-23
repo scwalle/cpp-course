@@ -8,13 +8,17 @@ using namespace std;
 
 void doCode(){
 	string first, last, middle;
-	cin >> first >> middle >> last;
+	cin >> first >> middle;
 
-	if (last.empty()) {
+	char c;
+	cin.get(c);
+	if (c == '\n') {
 		last = middle;
 		middle = "";
+	} else {
+		cin >> last;
 	}
-
+		
 	cout << last << ", " << first;
 	if (!middle.empty()) { // if has middle name
 		cout << " " << middle[0] << ".";
