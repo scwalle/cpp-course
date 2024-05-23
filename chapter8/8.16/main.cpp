@@ -52,8 +52,8 @@ double finishTime(Racer r) {
 	return findSplit(end, start);
 }
 
-bool fasterThan(Racer a, Racer b) {
-	return finishTime(a) < finishTime(b);
+bool slowerThan(Racer a, Racer b) {
+	return (finishTime(a) > finishTime(b));
 }
 
 void printRacer(Racer racer) {
@@ -64,6 +64,23 @@ void printRacer(Racer racer) {
 		cout << endl;
 	}
 }
+
+time24h subtractTimes(time24h start, time24h end) {
+	int hours, mins, secs;		
+	hours = end.hours - start.hours;
+	mins = end.mins - start.mins;
+	secs = end.secs - start.secs;
+	if (secs < 0) {
+		secs += 60;
+		mins--;
+	}
+	if (mins < 0) {
+		mins += 60;
+		hours--;
+	}
+	time24h out = {hours, mins, secs};
+	return out;
+};
 
 void printRacerFull(Racer racer) {
 	cout << "Racer #" << racer.id << endl;
@@ -77,6 +94,17 @@ void printRacerFull(Racer racer) {
 		}
 		cout << endl;
 	}
+	cout << endl;
+	time24h start, end;
+	start = racer.times[0];
+	end = racer.times[2];
+	time24h diff = subtractTimes(start, end);	
+
+	cout << "Overall finish time: ";
+	outputTime(diff);
+	cout << endl;
+
+	cout << "Overall race pace: " << (toMinutes(diff) / DISTANCE) << " mins/mile\n";
 }
 
 void doCode(){
@@ -119,7 +147,7 @@ void doCode(){
 	input.close();
 	/* cout << "----------------------------\n"; */
 
-	sort(racers.begin(), racers.end(), fasterThan);
+	sort(racers.begin(), racers.end(), slowerThan);
 
 	/* for (Racer r : racers) { */
 	/* 	printRacerFull(r); */
